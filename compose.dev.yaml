@@ -12,12 +12,15 @@ services:
 
     volumes:
       - .:/app
-      - /app/node_modules
+      - dev-node-modules:/app/node_modules
 
     ports:
       - 3001:3000
 
     env_file:
-      - .env.local
+      - .env
 
     command: npm run dev
+
+volumes:
+  dev-node-modules:
