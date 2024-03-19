@@ -1,11 +1,11 @@
 "use client";
 
-import { courses } from "@/db/schema";
+import { courses, userProgress } from "@/db/schema";
 import Card from "./Card";
 
 type ListProps = {
   courses: (typeof courses.$inferSelect)[];
-  activeCourseId: number;
+  activeCourseId?: typeof userProgress.$inferSelect.activeCourseId;
 };
 const List = ({ courses, activeCourseId }: ListProps) => {
   return (
