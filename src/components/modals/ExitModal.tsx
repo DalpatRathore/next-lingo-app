@@ -67,7 +67,6 @@ const ExitModal = () => {
           </div>
         </DialogFooter>
       </DialogContent>
-      ExitModal
     </Dialog>
   );
 };

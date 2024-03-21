@@ -30,20 +30,20 @@ const Card = ({
   type,
   disabled,
 }: CardProps) => {
-  // const [audio, _, controls] = useAudio({ src: audioSrc || "" });
-  // const handleClick = useCallback(() => {
-  //   if (disabled) return;
+  const [audio, _, controls] = useAudio({ src: audioSrc || "" });
+  const handleClick = useCallback(() => {
+    if (disabled) return;
 
-  //   controls.play();
+    controls.play();
 
-  //   onClick();
-  // }, [disabled, onClick, controls]);
+    onClick();
+  }, [disabled, onClick, controls]);
 
-  // useKey(shortcut, handleClick, {}, [handleClick]);
+  useKey(shortcut, handleClick, {}, [handleClick]);
   return (
     <div
-      // onClick={handleClick}
-      onClick={onClick}
+      onClick={handleClick}
+      // onClick={onClick}
       className={cn(
         "h-full border-2 border-b-4 rounded-xl hover:bg-black/5 lg:p-6 cursor-pointer active:border-b-2",
         selected && "border-sky-300 bg-sky-100 hover:bg-sky-100",

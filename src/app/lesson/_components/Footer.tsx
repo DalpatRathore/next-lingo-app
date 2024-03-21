@@ -10,8 +10,8 @@ type FooterProps = {
   lessonId?: boolean;
 };
 const Footer = ({ onCheck, status, disabled, lessonId }: FooterProps) => {
-  //   const isMobile = useMedia("max-width:1024px");
-  //   useKey("Enter", onCheck, {}, [onCheck]);
+  const isMobile = useMedia("max-width:1024px");
+  useKey("Enter", onCheck, {}, [onCheck]);
   return (
     <footer
       className={cn(
@@ -46,8 +46,8 @@ const Footer = ({ onCheck, status, disabled, lessonId }: FooterProps) => {
           disabled={disabled}
           className="ml-auto"
           onClick={onCheck}
-          //   size={isMobile ?"sm":"lg"}
-          size={"lg"}
+          size={isMobile ? "sm" : "lg"}
+          //   size={"lg"}
           variant={status === "wrong" ? "danger" : "secondary"}
         >
           {status === "none" && "Check"}

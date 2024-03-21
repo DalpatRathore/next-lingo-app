@@ -3,7 +3,7 @@
 import { challengeOptions, challenges } from "@/db/schema";
 import { useState } from "react";
 import Header from "./Header";
-import { MessageCircleQuestion, ShieldQuestion } from "lucide-react";
+import { ShieldQuestion } from "lucide-react";
 import QuestionBubble from "./QuestionBubble";
 import Challenge from "./Challenge";
 import Footer from "./Footer";
