@@ -15,6 +15,7 @@ import Image from "next/image";
 import ResultCard from "./ResultCard";
 import { useRouter } from "next/navigation";
 import Confetti from "react-confetti";
+import { useHeartsModal } from "@/store/useHeartsModal";
 
 type QuizProps = {
   initialPercent: number;
@@ -43,7 +44,7 @@ const Quiz = ({
   const [incorrectAudio, _i, incorrectControls] = useAudio({
     src: "/incorrect.wav",
   });
-
+  const { open: openHeartsModal } = useHeartsModal();
   const [pending, startTransition] = useTransition();
 
   const [hearts, setHearts] = useState(initialHearts);
@@ -104,6 +105,7 @@ const Quiz = ({
           .then(response => {
             if (response?.error === "hearts") {
               console.log("Missing hearts");
+              openHeartsModal();
               return;
             }
             correctControls.play();
@@ -123,6 +125,7 @@ const Quiz = ({
           .then(response => {
             if (response?.error === "hearts") {
               console.error("Missing hearts");
+              openHeartsModal();
               return;
             }
             incorrectControls.play();
