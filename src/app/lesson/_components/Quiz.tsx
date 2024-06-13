@@ -10,7 +10,11 @@ import Footer from "./Footer";
 import { upsertChallengeProgress } from "@/actions/challengeProgress";
 import { toast } from "sonner";
 import { reduceHearts } from "@/actions/userProgress";
-import { useAudio } from "react-use";
+import { useAudio, useWindowSize } from "react-use";
+import Image from "next/image";
+import ResultCard from "./ResultCard";
+import { useRouter } from "next/navigation";
+import Confetti from "react-confetti";
 
 type QuizProps = {
   initialPercent: number;
@@ -29,6 +33,11 @@ const Quiz = ({
   initialPercent,
   userSubscription,
 }: QuizProps) => {
+  const router = useRouter();
+
+  const { width, height } = useWindowSize();
+  const [finishAudio] = useAudio({ src: "/finish.mp3", autoPlay: true });
+
   const [correctAudio, _c, correctControls] = useAudio({ src: "/correct.wav" });
 
   const [incorrectAudio, _i, incorrectControls] = useAudio({
@@ -38,6 +47,8 @@ const Quiz = ({
   const [pending, startTransition] = useTransition();
 
   const [hearts, setHearts] = useState(initialHearts);
+
+  const [lessonId, setLessonId] = useState(initialLessonId);
 
   const [percentage, setPercentage] = useState(initialPercent);
 
@@ -126,6 +137,52 @@ const Quiz = ({
       });
     }
   };
+
+  if (!challenge) {
+    return (
+      <>
+        {finishAudio}
+        <Confetti
+          recycle={false}
+          numberOfPieces={1500}
+          tweenDuration={10000}
+          width={width}
+          height={height}
+        ></Confetti>
+        <div className="flex flex-col gap-4 lg:gap-y-8 max-w-lg mx-auto text-center items-center justify-center h-full">
+          <Image
+            src={"/finish.svg"}
+            alt="finish"
+            className="hidden lg:block"
+            width={100}
+            height={100}
+          ></Image>
+          <Image
+            src={"/finish.svg"}
+            alt="finish"
+            className="block lg:hidden"
+            width={50}
+            height={50}
+          ></Image>
+          <h1 className="text-xl lg:text-3xl font-bold text-neutral-700">
+            Great job! <br /> You&apos;ve completed the lesson.
+          </h1>
+          <div className="flex items-center gap-x-4 w-full">
+            <ResultCard
+              variant="points"
+              value={challenges.length * 10}
+            ></ResultCard>
+            <ResultCard variant="hearts" value={hearts}></ResultCard>
+          </div>
+        </div>
+        <Footer
+          status={"completed"}
+          lessonId={lessonId}
+          onCheck={() => router.push("/learn")}
+        ></Footer>
+      </>
+    );
+  }
 
   const title =
     challenge.type === "ASSIST"

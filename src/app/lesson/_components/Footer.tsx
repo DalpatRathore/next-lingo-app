@@ -7,7 +7,7 @@ type FooterProps = {
   onCheck: () => void;
   status: "correct" | "wrong" | "none" | "completed";
   disabled?: boolean;
-  lessonId?: boolean;
+  lessonId?: number;
 };
 const Footer = ({ onCheck, status, disabled, lessonId }: FooterProps) => {
   const isMobile = useMedia("max-width:1024px");
