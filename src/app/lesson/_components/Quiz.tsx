@@ -10,12 +10,13 @@ import Footer from "./Footer";
 import { upsertChallengeProgress } from "@/actions/challengeProgress";
 import { toast } from "sonner";
 import { reduceHearts } from "@/actions/userProgress";
-import { useAudio, useWindowSize } from "react-use";
+import { useAudio, useWindowSize, useMount } from "react-use";
 import Image from "next/image";
 import ResultCard from "./ResultCard";
 import { useRouter } from "next/navigation";
 import Confetti from "react-confetti";
 import { useHeartsModal } from "@/store/useHeartsModal";
+import { usePracticeModal } from "@/store/usePracticeModal";
 
 type QuizProps = {
   initialPercent: number;
@@ -45,13 +46,22 @@ const Quiz = ({
     src: "/incorrect.wav",
   });
   const { open: openHeartsModal } = useHeartsModal();
+  const { open: openPracticeModal } = usePracticeModal();
+
+  useMount(() => {
+    if (initialPercent === 100) {
+      openPracticeModal();
+    }
+  });
   const [pending, startTransition] = useTransition();
 
   const [hearts, setHearts] = useState(initialHearts);
 
   const [lessonId, setLessonId] = useState(initialLessonId);
 
-  const [percentage, setPercentage] = useState(initialPercent);
+  const [percentage, setPercentage] = useState(() => {
+    return initialPercent === 100 ? 0 : initialPercent;
+  });
 
   const [challenges, setChallenges] = useState(initialLessonChallenges);
 
