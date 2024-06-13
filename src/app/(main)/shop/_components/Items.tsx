@@ -1,6 +1,7 @@
 "use client";
 
 import { refillHearts } from "@/actions/userProgress";
+import { createStripeUrl } from "@/actions/userSubscription";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useTransition } from "react";
@@ -23,6 +24,18 @@ const Items = ({ hearts, points, hasActiveSubscription }: ItemsProps) => {
 
     startTransition(() => {
       refillHearts().catch(() => toast.error("Something went wrong!"));
+    });
+  };
+
+  const onUpgrade = () => {
+    startTransition(() => {
+      createStripeUrl()
+        .then(response => {
+          if (response.data) {
+            window.location.href = response.data;
+          }
+        })
+        .catch(() => toast.error("Something went wrong"));
     });
   };
 
@@ -53,6 +66,22 @@ const Items = ({ hearts, points, hasActiveSubscription }: ItemsProps) => {
               <p>{POINTS_TO_REFILL}</p>
             </div>
           )}
+        </Button>
+      </div>
+      <div className="flex items-center w-full gap-x-4 p-4 pt-8 border-t-2">
+        <Image
+          src={"/unlimited.svg"}
+          alt="Unlimited"
+          height={60}
+          width={60}
+        ></Image>
+        <div className="flex-1">
+          <p className="text-neutral-700 text-base lg:text-sl font-bold">
+            Unlimited hearts
+          </p>
+        </div>
+        <Button onClick={onUpgrade} disabled={pending || hasActiveSubscription}>
+          {hasActiveSubscription ? "active" : "upgrade"}
         </Button>
       </div>
     </div>
