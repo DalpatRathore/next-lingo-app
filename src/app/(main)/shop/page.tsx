@@ -6,6 +6,7 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import Items from "./_components/Items";
 import Promo from "@/components/Promo";
+import Quests from "@/components/Quests";
 
 const ShopPage = async () => {
   const userProgressData = getUserProgress();
@@ -30,6 +31,7 @@ const ShopPage = async () => {
           hasActiveSubscription={isPro}
         ></UserProgress>
         {!isPro && <Promo></Promo>}
+        <Quests points={userProgress.points}></Quests>
       </StickyWrapper>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">

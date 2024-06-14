@@ -1,5 +1,6 @@
 import FeedWrapper from "@/components/FeedWrapper";
 import Promo from "@/components/Promo";
+import Quests from "@/components/Quests";
 import StickyWrapper from "@/components/StickyWrapper";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
@@ -37,6 +38,7 @@ const LeaderBoardPage = async () => {
           hasActiveSubscription={isPro}
         ></UserProgress>
         {!isPro && <Promo></Promo>}
+        <Quests points={userProgress.points}></Quests>
       </StickyWrapper>
       <FeedWrapper>
         <div className="w-full flex flex-col items-center">
