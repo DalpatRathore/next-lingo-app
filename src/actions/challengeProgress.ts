@@ -38,7 +38,6 @@ export const upsertChallengeProgress = async (challengeId: number) => {
     ),
   });
   const isPractice = !!existingChallengeProgress;
-  //   TODO: not if user has a sub
 
   if (
     currentUserProgress.hearts === 0 &&

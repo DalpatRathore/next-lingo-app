@@ -1,5 +1,6 @@
 "use server";
 
+import { POINTS_TO_REFILL } from "@/constant/constant";
 import db from "@/db/drizzle";
 import {
   getCoursesById,
@@ -108,8 +109,6 @@ export const reduceHearts = async (challengeId: number) => {
   revalidatePath("/leaderboard");
   revalidatePath(`/lesson/${lessonId}`);
 };
-
-const POINTS_TO_REFILL = 10;
 
 export const refillHearts = async () => {
   const currentUserProgress = await getUserProgress();
