@@ -7,6 +7,7 @@ import {
   getLessonPercentage,
   getUnits,
   getUserProgress,
+  getUserSubscription,
 } from "@/db/queries";
 import { redirect } from "next/navigation";
 import Unit from "./_components/Unit";
@@ -18,13 +19,21 @@ const LearnPage = async () => {
   const lessonPercentageData = getLessonPercentage();
   const unitsData = getUnits();
 
-  const [userProgress, units, lessonPercentage, courseProgress] =
-    await Promise.all([
-      userProgressData,
-      unitsData,
-      lessonPercentageData,
-      courseProgressData,
-    ]);
+  const userSubcriptionData = getUserSubscription();
+
+  const [
+    userProgress,
+    units,
+    lessonPercentage,
+    courseProgress,
+    userSubcription,
+  ] = await Promise.all([
+    userProgressData,
+    unitsData,
+    lessonPercentageData,
+    courseProgressData,
+    userSubcriptionData,
+  ]);
 
   if (!userProgress || !userProgress.activeCourse) {
     redirect("/courses");
@@ -41,7 +50,7 @@ const LearnPage = async () => {
           activeCourse={userProgress.activeCourse}
           hearts={userProgress.hearts}
           points={userProgress.points}
-          hasActiveSubscription={false}
+          hasActiveSubscription={!!userSubcription?.isActive}
         ></UserProgress>
       </StickyWrapper>
       <FeedWrapper>

@@ -27,7 +27,7 @@ const Header = ({ hearts, percentage, hasActiveSubscription }: HeaderProps) => {
           className="mr-2"
         ></Image>
         {hasActiveSubscription ? (
-          <InfinityIcon className="w-6 h-6 stroke-[3]"></InfinityIcon>
+          <InfinityIcon className="w-6 h-6 stroke-[3] shrink-0"></InfinityIcon>
         ) : (
           hearts
         )}
