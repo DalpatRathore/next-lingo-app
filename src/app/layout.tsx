@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import ExitModal from "@/components/modals/ExitModal";
 import HeartsModal from "@/components/modals/HeartsModal";
 import PracticeModal from "@/components/modals/PracticeModal";
+import { ThemeProvider } from "@/components/ui/theme-provider";
 
 const font = Nunito({ subsets: ["latin"] });
 
@@ -22,11 +23,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
-        <Toaster></Toaster>
-        <ExitModal></ExitModal>
-        <HeartsModal></HeartsModal>
-        <PracticeModal></PracticeModal>
-        <body className={font.className}>{children}</body>
+        <body className={font.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Toaster></Toaster>
+            <ExitModal></ExitModal>
+            <HeartsModal></HeartsModal>
+            <PracticeModal></PracticeModal>
+            {children}
+          </ThemeProvider>
+        </body>
       </ClerkProvider>
     </html>
   );

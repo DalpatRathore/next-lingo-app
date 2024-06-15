@@ -1,3 +1,4 @@
+import ThemeToggle from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import {
   ClerkLoaded,
@@ -40,6 +41,7 @@ const Header = () => {
             </SignInButton>
           </SignedOut>
         </ClerkLoaded>
+        <ThemeToggle></ThemeToggle>
       </div>
     </header>
   );

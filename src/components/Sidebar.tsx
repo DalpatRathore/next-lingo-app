@@ -6,6 +6,7 @@ import Link from "next/link";
 import SidebarItem from "./SidebarItem";
 import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 import { Loader2 } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 type SidebarProps = {
   className?: string;
@@ -21,8 +22,8 @@ const Sidebar = ({ className }: SidebarProps) => {
       <Link href={"/learn"}>
         <div className="pt-8 pl-4 pb-7 flex items-center gap-x-3">
           <Image src="/mascot.svg" height={40} width={40} alt="mascot"></Image>
-          <h1 className="text-2xl font-extrabold text-green-600 tracking-wide">
-            Lingo
+          <h1 className="text-lg font-extrabold text-green-600 tracking-wide">
+            Next Lingo App
           </h1>
         </div>
       </Link>
@@ -48,13 +49,14 @@ const Sidebar = ({ className }: SidebarProps) => {
           iconSrc="/shop.svg"
         ></SidebarItem>
       </div>
-      <div className="p-4">
+      <div className="p-4 flex flex-col items-start justify-center gap-y-4">
         <ClerkLoading>
           <Loader2 className="w- h-5 text-muted-foreground animate-spin"></Loader2>
         </ClerkLoading>
         <ClerkLoaded>
           <UserButton afterSignOutUrl="/"></UserButton>
         </ClerkLoaded>
+        <ThemeToggle></ThemeToggle>
       </div>
     </div>
   );
