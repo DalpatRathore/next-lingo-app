@@ -14,6 +14,9 @@ import { LessonCreate } from "./lesson/create";
 import { ChallengeList } from "./challenge/list";
 import { ChallengeEdit } from "./challenge/edit";
 import { ChallengeCreate } from "./challenge/create";
+import { ChallengeOptionList } from "./challengeOption/list";
+import { ChallengeOptionEdit } from "./challengeOption/edit";
+import { ChallengeOptionCreate } from "./challengeOption/create";
 
 const dataProvider = simpleRestProvider("/api");
 
@@ -47,6 +50,14 @@ const App = () => {
         edit={ChallengeEdit}
         create={ChallengeCreate}
         recordRepresentation={"question"}
+      ></Resource>
+      <Resource
+        name="challenge-options"
+        list={ChallengeOptionList}
+        edit={ChallengeOptionEdit}
+        create={ChallengeOptionCreate}
+        recordRepresentation={"text"}
+        options={{ label: "Challenge Options" }}
       ></Resource>
     </Admin>
   );
