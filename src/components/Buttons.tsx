@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-const ButtonsPage = () => {
+const Buttons = () => {
   return (
     <div className="flex flex-col max-w-[200px] p-4 space-y-4">
       <Button>Default</Button>
@@ -18,4 +18,4 @@ const ButtonsPage = () => {
     </div>
   );
 };
-export default ButtonsPage;
+export default Buttons;
