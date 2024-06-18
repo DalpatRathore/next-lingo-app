@@ -49,14 +49,14 @@ const Sidebar = ({ className }: SidebarProps) => {
           iconSrc="/shop.svg"
         ></SidebarItem>
       </div>
-      <div className="p-4 flex flex-col items-start justify-center gap-y-4">
+      <div className="p-4 flex items-start justify-between">
+        <ThemeToggle></ThemeToggle>
         <ClerkLoading>
-          <Loader2 className="w- h-5 text-muted-foreground animate-spin"></Loader2>
+          <Loader2 className="w-5 h-5 text-muted-foreground animate-spin"></Loader2>
         </ClerkLoading>
         <ClerkLoaded>
           <UserButton afterSignOutUrl="/"></UserButton>
         </ClerkLoaded>
-        <ThemeToggle></ThemeToggle>
       </div>
     </div>
   );
