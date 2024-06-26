@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import SidebarItem from "./SidebarItem";
 import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
-import { Loader2 } from "lucide-react";
+import { Loader2, Lock } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import { Button } from "./ui/button";
 
 type SidebarProps = {
   className?: string;
@@ -51,9 +52,15 @@ const Sidebar = ({ className }: SidebarProps) => {
       </div>
       <div className="p-4 flex items-start justify-between">
         <ThemeToggle></ThemeToggle>
+        <Button size="icon" variant={"super"}>
+          <Link href={"/admin"}>
+            <Lock className="w-4 h-4"></Lock>
+          </Link>
+        </Button>
         <ClerkLoading>
           <Loader2 className="w-5 h-5 text-muted-foreground animate-spin"></Loader2>
         </ClerkLoading>
+
         <ClerkLoaded>
           <UserButton afterSignOutUrl="/"></UserButton>
         </ClerkLoaded>

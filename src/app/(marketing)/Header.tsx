@@ -9,8 +9,9 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
-import { Loader, Loader2 } from "lucide-react";
+import { FileSliders, Loader, Loader2, Lock, LogIn } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -22,26 +23,33 @@ const Header = () => {
             Next Lingo App
           </h1>
         </div>
-        <ClerkLoading>
-          <Loader2 className="w-5 h-5 text-muted-foreground animate-spin"></Loader2>
-        </ClerkLoading>
-        <ClerkLoaded>
-          <SignedIn>
-            <UserButton afterSignOutUrl="/" />
-          </SignedIn>
-          <SignedOut>
-            <SignInButton
-              mode="modal"
-              afterSignInUrl="/learn"
-              afterSignUpUrl="/learn"
-            >
-              <Button size="lg" variant="ghost">
-                Login
-              </Button>
-            </SignInButton>
-          </SignedOut>
-        </ClerkLoaded>
-        <ThemeToggle></ThemeToggle>
+        <div className="flex items-center justify-center gap-2">
+          <ClerkLoading>
+            <Loader2 className="w-5 h-5 text-muted-foreground animate-spin"></Loader2>
+          </ClerkLoading>
+          <ClerkLoaded>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton
+                mode="modal"
+                afterSignInUrl="/learn"
+                afterSignUpUrl="/learn"
+              >
+                <Button size="icon" variant={"secondary"}>
+                  <LogIn className="w-4 h-4"></LogIn>
+                </Button>
+              </SignInButton>
+            </SignedOut>
+          </ClerkLoaded>
+          <ThemeToggle></ThemeToggle>
+          <Button size="icon" variant={"super"}>
+            <Link href={"/admin"}>
+              <Lock className="w-4 h-4"></Lock>
+            </Link>
+          </Button>
+        </div>
       </div>
     </header>
   );
