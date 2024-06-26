@@ -1,7 +1,5 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import Administer from "./administer";
+import Admin from "./Admin";
 
 const Footer = () => {
   return (
@@ -47,7 +45,7 @@ const Footer = () => {
           className="mr-4 rounded-md"
         ></Image>
 
-        <Administer></Administer>
+        <Admin></Admin>
       </div>
     </footer>
   );

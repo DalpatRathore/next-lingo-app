@@ -23,7 +23,7 @@ const HeartsModal = () => {
 
   const handleClick = () => {
     close();
-    router.push("/store");
+    router.push("/shop");
   };
 
   if (!isClient) {

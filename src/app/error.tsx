@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Administer from "./(marketing)/administer";
+import Admin from "./(marketing)/Admin";
 
 export default function Error({
   error,
@@ -35,7 +35,7 @@ export default function Error({
                 Kindly get in touch with the website administrator for further
                 assistance.
               </p>
-              <Administer></Administer>
+              <Admin></Admin>
             </div>
           </div>
         </div>

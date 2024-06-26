@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const Administer = () => {
+const Admin = () => {
   return (
     <a href="https://www.linkedin.com/in/dalpatrathore">
       <Avatar>
@@ -10,4 +10,4 @@ const Administer = () => {
     </a>
   );
 };
-export default Administer;
+export default Admin;
